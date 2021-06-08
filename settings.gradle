@@ -1,0 +1,2 @@
+rootProject.name = "CowinTracker"
+include ':app'
