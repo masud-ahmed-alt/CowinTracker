@@ -2,6 +2,7 @@ package www.cowintracker.in;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         initVar();
         ApiUtilities.getApiInterface().getCountryData()
                 .enqueue(new Callback<List<CountryData>>() {
+                    @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(Call<List<CountryData>> call, Response<List<CountryData>> response) {
                         list.addAll(response.body());
