@@ -3,12 +3,15 @@ package www.cowintracker.in;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
+import org.jetbrains.annotations.NotNull;
 
 import java.text.DateFormat;
 import java.text.NumberFormat;
@@ -25,24 +28,32 @@ import www.cowintracker.in.api.CountryData;
 
 public class MainActivity extends AppCompatActivity {
     private TextView totalConfirm, totalActive, totalRecovered, totalDeath, totalTests;
-    private TextView todayConfirm, todayRecovered, todayDeath,dateTV;
+    private TextView todayConfirm, todayRecovered, todayDeath,dateTV, cName;
     private List<CountryData> list;
     private PieChart pieChart;
+
+    String country = "India";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        list = new ArrayList<>();
+
         initVar();
+        if (getIntent().getStringExtra("country")!=null)
+            country = getIntent().getStringExtra("country");
+
+        cName.setText(country);
+        cName.setOnClickListener(v -> startActivity(new Intent(MainActivity.this,CountryActivity.class)));
+
         ApiUtilities.getApiInterface().getCountryData()
                 .enqueue(new Callback<List<CountryData>>() {
                     @SuppressLint("SetTextI18n")
                     @Override
-                    public void onResponse(Call<List<CountryData>> call, Response<List<CountryData>> response) {
+                    public void onResponse(@NotNull Call<List<CountryData>> call, @NotNull Response<List<CountryData>> response) {
                         list.addAll(response.body());
                         for (int i =0; i<list.size();i++){
-                            if (list.get(i).getCountry().equals("India")){
+                            if (list.get(i).getCountry().equals(country)){
                                 int confirm = Integer.parseInt(list.get(i).getCases());
                                 int active = Integer.parseInt(list.get(i).getActive());
                                 int recovered = Integer.parseInt(list.get(i).getRecovered());
@@ -96,5 +107,6 @@ public class MainActivity extends AppCompatActivity {
         todayDeath =findViewById(R.id.todayDeath);
         pieChart =findViewById(R.id.pieChart);
         dateTV =findViewById(R.id.date);
+        cName =findViewById(R.id.cname);
     }
 }

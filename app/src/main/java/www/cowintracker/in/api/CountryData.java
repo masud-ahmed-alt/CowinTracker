@@ -1,5 +1,7 @@
 package www.cowintracker.in.api;
 
+import java.util.Map;
+
 public class CountryData {
     private String updated;
     private String country;
@@ -12,7 +14,9 @@ public class CountryData {
     private String active;
     private String tests;
 
-    public CountryData(String updated, String country, String cases, String todayCases, String deaths, String todayDeaths, String recovered, String todayRecovered, String active, String tests) {
+    private Map<String,String> countryInfo;
+
+    public CountryData(String updated, String country, String cases, String todayCases, String deaths, String todayDeaths, String recovered, String todayRecovered, String active, String tests, Map<String, String> countryInfo) {
         this.updated = updated;
         this.country = country;
         this.cases = cases;
@@ -23,6 +27,7 @@ public class CountryData {
         this.todayRecovered = todayRecovered;
         this.active = active;
         this.tests = tests;
+        this.countryInfo = countryInfo;
     }
 
     public String getUpdated() {
@@ -103,5 +108,13 @@ public class CountryData {
 
     public void setTests(String tests) {
         this.tests = tests;
+    }
+
+    public Map<String, String> getCountryInfo() {
+        return countryInfo;
+    }
+
+    public void setCountryInfo(Map<String, String> countryInfo) {
+        this.countryInfo = countryInfo;
     }
 }
