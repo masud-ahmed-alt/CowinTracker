@@ -44,7 +44,12 @@ public class MainActivity extends AppCompatActivity {
             country = getIntent().getStringExtra("country");
 
         cName.setText(country);
-        cName.setOnClickListener(v -> startActivity(new Intent(MainActivity.this,CountryActivity.class)));
+        cName.setOnClickListener(v -> {
+            finish();
+            startActivity(new Intent(MainActivity.this, CountryActivity.class));
+
+        });
+
 
         ApiUtilities.getApiInterface().getCountryData()
                 .enqueue(new Callback<List<CountryData>>() {
@@ -108,5 +113,6 @@ public class MainActivity extends AppCompatActivity {
         pieChart =findViewById(R.id.pieChart);
         dateTV =findViewById(R.id.date);
         cName =findViewById(R.id.cname);
+        list = new ArrayList<>();
     }
 }

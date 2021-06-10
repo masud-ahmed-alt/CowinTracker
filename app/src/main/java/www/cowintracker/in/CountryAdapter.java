@@ -1,5 +1,6 @@
 package www.cowintracker.in;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -54,13 +55,12 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.CountryV
         Map<String,String> img = data.getCountryInfo();
         Glide.with(context).load(img.get("flag")).into(holder.imageView);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context,MainActivity.class);
-                intent.putExtra("country", data.getCountry());
-                context.startActivity(intent);
-            }
+        holder.itemView.setOnClickListener(v -> {
+            CountryActivity activity = (CountryActivity) context;
+            activity.finish();
+            Intent intent = new Intent(context,MainActivity.class);
+            intent.putExtra("country", data.getCountry());
+            context.startActivity(intent);
         });
     }
 
