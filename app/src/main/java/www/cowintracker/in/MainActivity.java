@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,11 +38,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences preferences = getSharedPreferences("COUNTRY", MODE_PRIVATE);
+        country =  preferences.getString("NAME",country);
 
         initVar();
-        if (getIntent().getStringExtra("country")!=null)
-            country = getIntent().getStringExtra("country");
 
+        if (getIntent().getStringExtra("country")!=null) {
+                country = getIntent().getStringExtra("country");
+
+        }
+
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("NAME",country);
+        editor.apply();
         cName.setText(country);
         cName.setOnClickListener(v -> {
             finish();
@@ -91,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
                 });
 
     }
+
+
 
     private void setText(String updated) {
         DateFormat format = new SimpleDateFormat("MMM dd, yyy");
