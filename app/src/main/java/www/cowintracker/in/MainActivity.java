@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         cName.setOnClickListener(v -> {
             finish();
             startActivity(new Intent(MainActivity.this, CountryActivity.class));
-
         });
 
 
