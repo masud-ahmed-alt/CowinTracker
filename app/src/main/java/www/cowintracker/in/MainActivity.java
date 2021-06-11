@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_copy);
         SharedPreferences preferences = getSharedPreferences("COUNTRY", MODE_PRIVATE);
         country =  preferences.getString("NAME",country);
 
