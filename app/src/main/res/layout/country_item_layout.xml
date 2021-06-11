@@ -20,7 +20,6 @@
             android:text="123"
             android:layout_centerVertical="true"
             android:layout_marginStart="12dp"
-            android:textColor="@color/black"
             android:textSize="@dimen/text_size"
             android:fontFamily="@font/rubik_regular"/>
 
@@ -38,7 +37,7 @@
             android:layout_centerVertical="true"
             android:layout_toEndOf="@id/countryImage"
             android:layout_marginStart="12dp"
-            android:textColor="@color/black"
+            
             android:textSize="@dimen/text_size"
             android:fontFamily="@font/rubik_regular"/>
         <TextView
@@ -49,7 +48,7 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="12dp"
-            android:textColor="@color/black"
+            
             android:textSize="@dimen/text_size"
             android:fontFamily="@font/rubik_regular"/>
     </RelativeLayout>
